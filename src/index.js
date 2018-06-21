@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 class Order extends React.Component{
   render(){
@@ -12,6 +13,22 @@ class Order extends React.Component{
       <li>Ordered by {this.props.orderInfo.customerName} at {this.props.orderInfo.orderedAt}.</li>
         </ul>
       </div>
-    )
+    );
   }
 }
+
+Order.defaultProps ={
+  cone :true,
+  size: 'regular'
+
+};
+
+Order.propTypes = {
+  cone : PropTypes.bool,
+  size:  PropTypes.string,
+  scoops: PropTypes.arrayOf(PropTypes.string).isRequired,
+  orderInfo : PropTypes.shape({
+    customerName : PropTypes.string.isRequired,
+    orderAt : PropTypes.number.isRequired
+  }).isRequired
+};
